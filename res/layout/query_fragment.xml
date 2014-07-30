@@ -10,6 +10,7 @@
         android:layout_alignBaseline="@+id/button1"
         android:layout_alignBottom="@+id/button1"
         android:layout_toLeftOf="@+id/button1"
+        android:text="editor"
         android:ems="10" >
 
         <requestFocus />
@@ -31,15 +32,17 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/query"
-        android:layout_marginLeft="63dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="54dp"
+        android:layout_marginTop="26dp"
         android:text="" />
 
     <TextView
         android:id="@+id/meaning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
+        android:layout_alignLeft="@+id/voice"
+        android:layout_below="@+id/voice"
+        android:layout_marginTop="56dp"
         android:text="" />
 
 </RelativeLayout>

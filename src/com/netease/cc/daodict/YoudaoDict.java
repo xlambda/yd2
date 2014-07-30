@@ -206,7 +206,7 @@ public class YoudaoDict {
 			}
 			t = new Translate();
 			try {
-				t.phonetic = new String(t1, "Latin1");
+				t.phonetic = new String(t1, "GBK");
 				t.translate = new String(t2, "GBK");
 			}
 			catch (UnsupportedEncodingException e) {

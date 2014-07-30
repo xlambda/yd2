@@ -1,8 +1,11 @@
 package com.netease.cc.daodict;
 
+import java.io.BufferedReader;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import android.app.Fragment;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,11 +23,16 @@ public class QueryFragment extends Fragment{
 	private YoudaoDict dictDB;
 	private TextView tVoice;
 	private TextView tMeaning;
+	private Typeface mFace;
+	private String sLastVoice;
+	private String sLastMeaning;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		Log.i("lifecircle", "onCreate");
 		super.onCreate(savedInstanceState);
+		sLastVoice = "";
+		sLastMeaning = "";
 	}
 	
 
@@ -36,7 +44,8 @@ public class QueryFragment extends Fragment{
 		editWord = (EditText)view.findViewById(R.id.editText1);
 		tVoice = (TextView)view.findViewById(R.id.voice);
 		tMeaning = (TextView)view.findViewById(R.id.meaning);
-		
+		mFace = Typeface.createFromAsset(getResources().getAssets(), "fonts/segoeui.ttf");
+				
 		btnQueryButton = (Button)view.findViewById(R.id.query);
 		btnQueryButton.setOnClickListener(new View.OnClickListener() {
 			
@@ -59,9 +68,13 @@ public class QueryFragment extends Fragment{
 		                Log.e("translateError","no result");
 		            } else {
 		                //showTranslatedContent(true);
-		                tVoice.setText(transList[0]);
-		                tMeaning.setText(transList[1]);
-		                Log.d("translateInfo", transList.toString());
+		            	sLastVoice = transList[0];
+		            	sLastMeaning = transList[1];
+		                tVoice.setText(sLastVoice);
+		                tMeaning.setText(sLastMeaning);
+		        		tVoice.setTypeface(mFace);
+		        		tMeaning.setTypeface(mFace);
+		                Log.d("translateInfo", transList.toString() + transList[0] + transList[1]);
 		            }
 		        }
 			}
@@ -130,6 +143,9 @@ public class QueryFragment extends Fragment{
 		// TODO Auto-generated method stub
 		Log.i("lifecircle", "onStart");
 		super.onStart();
+
+        tVoice.setText(sLastVoice);
+        tMeaning.setText(sLastMeaning);
 	}
 
 	@Override
